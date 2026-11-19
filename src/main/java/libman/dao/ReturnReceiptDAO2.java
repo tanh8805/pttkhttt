@@ -15,11 +15,9 @@ public class ReturnReceiptDAO2 extends DAO2 {
         super();
     }
 
-    // Lưu phiếu trả, dòng trả, khoản phạt và cập nhật trạng thái tài liệu trong một giao dịch: nhận ReturnReceipt2, trả về true nếu lưu được
+    // Lưu phiếu trả, dòng trả, khoản phạt và cập nhật trạng thái tài liệu: nhận ReturnReceipt2, trả về true nếu lưu được
     public boolean saveReturnReceipt(ReturnReceipt2 receipt) {
         try {
-            con.setAutoCommit(false);
-
             // Sinh mã phiếu trả = PT + số thứ tự kế tiếp 5 chữ số
             String code;
             try (PreparedStatement ps = con.prepareStatement(
@@ -88,15 +86,12 @@ public class ReturnReceiptDAO2 extends DAO2 {
                 }
             }
 
-            con.commit();
             receipt.setReturnCode(code);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            try { con.rollback(); } catch (Exception ignore) { }
             return false;
         } finally {
-            try { con.setAutoCommit(true); } catch (Exception ignore) { }
             try { con.close(); } catch (Exception ignore) { }
         }
     }
