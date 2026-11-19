@@ -150,19 +150,25 @@ CREATE TABLE tblFine2 (
     FOREIGN KEY (tblReturnReceiptDetail2id) REFERENCES tblReturnReceiptDetail2(id)
 );
 
+-- Tài khoản demo (mật khẩu đều là 123456): nhân viên tranthib; bạn đọc b23dccn001 (Nguyễn Văn A, có thẻ TH01234), b23dccn002 (Lê Văn C, có thẻ TH01233), b23dccn003 (Nguyễn Văn C) và b23dccn004 (Nguyễn Văn D) chưa có thẻ
 INSERT INTO tblMember2 (id, username, password, fullName, dateOfBirth, address, email, phoneNumber, role) VALUES
 (1, 'b23dccn001', '123456', 'Nguyễn Văn A', '2005-03-15', NULL, 'b23dccn001@stu.ptit.edu.vn', NULL, 'Reader'),
 (2, 'tranthib',   '123456', 'Trần Thị B',    '1990-06-20', '12 Nguyễn Trãi, Hà Đông, Hà Nội', 'tranthib@ptit.edu.vn', '0912345678', 'Librarian'),
-(3, 'b23dccn002', '123456', 'Lê Văn C',      '2005-07-20', '5 Lê Lợi, Hà Đông, Hà Nội', 'b23dccn002@stu.ptit.edu.vn', '0987654321', 'Reader');
+(3, 'b23dccn002', '123456', 'Lê Văn C',      '2005-07-20', '5 Lê Lợi, Hà Đông, Hà Nội', 'b23dccn002@stu.ptit.edu.vn', '0987654321', 'Reader'),
+(4, 'b23dccn003', '123456', 'Nguyễn Văn C',  '2005-09-10', NULL, 'b23dccn003@stu.ptit.edu.vn', NULL, 'Reader'),
+(5, 'b23dccn004', '123456', 'Nguyễn Văn D',  '2005-11-02', NULL, 'b23dccn004@stu.ptit.edu.vn', NULL, 'Reader');
 
 INSERT INTO tblReader2 (id, readerCode, unit, readerType) VALUES
 (1, 'B23DCCN001', 'Lớp D23CQCN01-B, Khoa Công nghệ thông tin 1', 'Sinh viên'),
-(3, 'B23DCCN002', 'Lớp D23CQCN01-B, Khoa Công nghệ thông tin 1', 'Sinh viên');
+(3, 'B23DCCN002', 'Lớp D23CQCN01-B, Khoa Công nghệ thông tin 1', 'Sinh viên'),
+(4, 'B23DCCN003', 'Lớp D23CQCN01-B, Khoa Công nghệ thông tin 1', 'Sinh viên'),
+(5, 'B23DCCN004', 'Lớp D23CQCN01-B, Khoa Công nghệ thông tin 1', 'Sinh viên');
 
 INSERT INTO tblEmployee2 (id, position) VALUES (2, 'Thủ thư');
 
 INSERT INTO tblReaderCard2 (id, cardCode, cardType, portraitImage, issueDate, expiryDate, status, tblReader2id) VALUES
-(1, 'TH01233', 'Sinh viên', 'anh_the_C.jpg', DATE_SUB(CURDATE(), INTERVAL 9 MONTH), DATE_ADD(CURDATE(), INTERVAL 3 MONTH), 'Hoạt động', 3);
+(1, 'TH01233', 'Sinh viên', 'anh_the_C.jpg', DATE_SUB(CURDATE(), INTERVAL 9 MONTH), DATE_ADD(CURDATE(), INTERVAL 3 MONTH), 'Hoạt động', 3),
+(2, 'TH01234', 'Sinh viên', 'anh_the_A.jpg', '2026-08-25', '2027-08-25', 'Hoạt động', 1);
 
 INSERT INTO tblDocument2 (id, documentCode, title, documentType, author, publisher, publishYear, price) VALUES
 (1, 'TL0012', 'Lập trình hướng đối tượng', 'Giáo trình', 'Nguyễn Văn Hiệu', 'NXB Thông tin và Truyền thông', 2020, 95000),
@@ -185,8 +191,8 @@ INSERT INTO tblBorrowableDocument2 (id, copyCode, location, status, tblDocument2
 
 INSERT INTO tblBorrowSlip2 (id, borrowCode, borrowDate, dueDate, tblReader2id, tblEmployee2id) VALUES
 (1, 'PM00097', DATE_SUB(CURDATE(), INTERVAL 112 DAY), DATE_SUB(CURDATE(), INTERVAL 96 DAY), 3, 2),
-(2, 'PM00098', DATE_SUB(CURDATE(), INTERVAL 33 DAY),  DATE_SUB(CURDATE(), INTERVAL 3 DAY),  1, 2),
-(3, 'PM00105', DATE_SUB(CURDATE(), INTERVAL 19 DAY),  DATE_ADD(CURDATE(), INTERVAL 11 DAY), 1, 2),
+(2, 'PM00098', DATE_SUB(CURDATE(), INTERVAL 17 DAY),  DATE_SUB(CURDATE(), INTERVAL 3 DAY),  1, 2),
+(3, 'PM00105', DATE_SUB(CURDATE(), INTERVAL 3 DAY),   DATE_ADD(CURDATE(), INTERVAL 11 DAY), 1, 2),
 (4, 'PM00111', DATE_SUB(CURDATE(), INTERVAL 64 DAY),  DATE_SUB(CURDATE(), INTERVAL 34 DAY), 1, 2);
 
 INSERT INTO tblBorrowSlipDetail2 (id, tblBorrowSlip2id, tblBorrowableDocument2id) VALUES

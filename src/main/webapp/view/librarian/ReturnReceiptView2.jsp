@@ -66,10 +66,12 @@
     }
     String savedDisplay = "none";
     String savedBlock = "none";
+    String saveDisplay = "inline-block";
     String outReturnCode = "";
     if (saved) {
         savedDisplay = "flex";
         savedBlock = "block";
+        saveDisplay = "none";
         outReturnCode = receipt.getReturnCode();
     }
     String outReturnDate = fmtDate(receipt.getReturnDate());
@@ -139,7 +141,7 @@
         <p style="margin:0 0 16px 0;font-weight:bold;">Tổng tiền phạt (đồng): <span id="outTotalFine"><%= money(outTotalFine) %></span></p>
         </div>
         <div id="outError" style="margin:16px 0;padding:10px 14px;background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;border-radius:6px;display:<%= errorDisplay %>;"><%= esc(outError) %></div>
-        <form method="post">
+        <form method="post" style="display:<%= saveDisplay %>;">
             <input type="hidden" name="action" value="luu">
             <button type="submit" id="btnSave" style="height:42px;padding:0 22px;background:#1d4ed8;color:#ffffff;border:none;border-radius:6px;font-family:inherit;font-size:15px;font-weight:bold;cursor:pointer;box-sizing:border-box;">Lưu</button>
         </form>
