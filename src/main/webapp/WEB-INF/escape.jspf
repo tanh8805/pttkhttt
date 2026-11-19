@@ -1,0 +1,33 @@
+<%!
+    // Thoát ký tự HTML của giá trị cần in, null thì trả về chuỗi rỗng
+    private static String esc(Object value) {
+        if (value == null) {
+            return "";
+        }
+        return value.toString().replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+                .replace("\"", "&#034;").replace("'", "&#039;");
+    }
+
+    // Định dạng số tiền có dấu chấm ngăn cách hàng nghìn
+    private static String money(float amount) {
+        java.text.DecimalFormat format = new java.text.DecimalFormat("#,###",
+                new java.text.DecimalFormatSymbols(new java.util.Locale("vi", "VN")));
+        return format.format(amount);
+    }
+
+    // Định dạng ngày dd/MM/yyyy, null thì trả về chuỗi rỗng
+    private static String fmtDate(java.util.Date date) {
+        if (date == null) {
+            return "";
+        }
+        return new java.text.SimpleDateFormat("dd/MM/yyyy").format(date);
+    }
+
+    // Thanh LIBMAN trên đầu trang, hiện tên người đăng nhập
+    private static String topBar(String who) {
+        return "<div style=\"background:linear-gradient(90deg,#1f2937,#1e3a8a);color:#ffffff;height:55px;padding:0 32px;"
+                + "display:flex;align-items:center;justify-content:space-between;\">"
+                + "<span style=\"font-size:18px;font-weight:bold;letter-spacing:2px;\">LIBMAN</span>"
+                + "<span style=\"font-size:15px;\">" + esc(who) + "</span></div>";
+    }
+%>
