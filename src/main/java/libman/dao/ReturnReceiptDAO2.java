@@ -47,11 +47,10 @@ public class ReturnReceiptDAO2 extends DAO2 {
             for (ReturnReceiptDetail2 detail : receipt.getDetails()) {
                 // Lưu dòng trả
                 try (PreparedStatement ps = con.prepareStatement(
-                        "INSERT INTO tblReturnReceiptDetail2 (tblReturnReceipt2id, tblBorrowSlipDetail2id, tblBorrowableDocument2id) VALUES (?, ?, ?)",
+                        "INSERT INTO tblReturnReceiptDetail2 (tblReturnReceipt2id, tblBorrowSlipDetail2id) VALUES (?, ?)",
                         Statement.RETURN_GENERATED_KEYS)) {
                     ps.setInt(1, receipt.getId());
                     ps.setInt(2, detail.getBorrowSlipDetail().getId());
-                    ps.setInt(3, detail.getBorrowableDocument().getId());
                     ps.executeUpdate();
                     try (ResultSet keys = ps.getGeneratedKeys()) {
                         keys.next();
@@ -84,7 +83,7 @@ public class ReturnReceiptDAO2 extends DAO2 {
                 try (PreparedStatement ps = con.prepareStatement(
                         "UPDATE tblBorrowableDocument2 SET status = ? WHERE id = ?")) {
                     ps.setString(1, damaged ? "Chờ xử lí" : "Trong kho");
-                    ps.setInt(2, detail.getBorrowableDocument().getId());
+                    ps.setInt(2, detail.getBorrowSlipDetail().getBorrowableDocument().getId());
                     ps.executeUpdate();
                 }
             }

@@ -114,7 +114,7 @@
             </tr>
             <%
                 for (int i = 0; i < rows.length; i++) {
-                    BorrowableDocument2 copy = rows[i].getBorrowableDocument();
+                    BorrowableDocument2 copy = rows[i].getBorrowSlipDetail().getBorrowableDocument();
                     BorrowSlip2 slip = listBorrowSlip[i];
                     float lateFine = 0;
                     float damageFine = 0;

@@ -89,7 +89,7 @@
             <%
                 // Mỗi dòng trả: cộng riêng phạt trả chậm và phạt hỏng hóc
                 for (int i = 0; i < listDetail.length; i++) {
-                    BorrowableDocument2 copy = listDetail[i].getBorrowableDocument();
+                    BorrowableDocument2 copy = listDetail[i].getBorrowSlipDetail().getBorrowableDocument();
                     BorrowSlip2 slip = listBorrowSlip[i];
                     float lateFine = 0;
                     float damageFine = 0;

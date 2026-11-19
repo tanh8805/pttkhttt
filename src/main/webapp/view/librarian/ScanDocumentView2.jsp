@@ -64,7 +64,6 @@
             // Đóng gói dòng trả kèm các khoản phạt
             ReturnReceiptDetail2 detail = new ReturnReceiptDetail2();
             detail.setBorrowSlipDetail(slipDetail);
-            detail.setBorrowableDocument(slipDetail.getBorrowableDocument());
             detail.setFines(fines);
 
             // Thêm dòng trả và phiếu mượn vào hai danh sách, xoá tài liệu đang quét, về trang nhận trả
@@ -89,7 +88,7 @@
         // Tài liệu đã nằm trong danh sách trả thì báo đã quét
         boolean scanned = false;
         for (int i = 0; i < listDetail.length; i++) {
-            if (listDetail[i].getBorrowableDocument().getCopyCode().equalsIgnoreCase(inCopyCode)) {
+            if (listDetail[i].getBorrowSlipDetail().getBorrowableDocument().getCopyCode().equalsIgnoreCase(inCopyCode)) {
                 scanned = true;
             }
         }

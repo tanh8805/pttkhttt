@@ -135,10 +135,8 @@ CREATE TABLE tblReturnReceiptDetail2 (
     id                     INT AUTO_INCREMENT PRIMARY KEY,
     tblReturnReceipt2id    INT NOT NULL,
     tblBorrowSlipDetail2id INT NOT NULL UNIQUE,
-    tblBorrowableDocument2id INT NOT NULL,
     FOREIGN KEY (tblReturnReceipt2id) REFERENCES tblReturnReceipt2(id),
-    FOREIGN KEY (tblBorrowSlipDetail2id) REFERENCES tblBorrowSlipDetail2(id),
-    FOREIGN KEY (tblBorrowableDocument2id) REFERENCES tblBorrowableDocument2(id)
+    FOREIGN KEY (tblBorrowSlipDetail2id) REFERENCES tblBorrowSlipDetail2(id)
 );
 
 CREATE TABLE tblFine2 (
@@ -203,5 +201,5 @@ INSERT INTO tblBorrowSlipDetail2 (id, tblBorrowSlip2id, tblBorrowableDocument2id
 
 INSERT INTO tblReturnReceipt2 (id, returnCode, returnDate, tblReader2id, tblEmployee2id) VALUES
 (1, 'PT00017', DATE_SUB(CURDATE(), INTERVAL 97 DAY), 3, 2);
-INSERT INTO tblReturnReceiptDetail2 (id, tblReturnReceipt2id, tblBorrowSlipDetail2id, tblBorrowableDocument2id) VALUES
-(1, 1, 1, 2);
+INSERT INTO tblReturnReceiptDetail2 (id, tblReturnReceipt2id, tblBorrowSlipDetail2id) VALUES
+(1, 1, 1);
